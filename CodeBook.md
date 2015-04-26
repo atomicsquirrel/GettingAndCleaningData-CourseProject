@@ -1,26 +1,13 @@
 ## CodeBook
 
 This CodeBook file relates to the Course Project in the Coursera Course 
-"Getting and Cleaning Data". Here, I outline the basic functionality of 
-the analysis script "run_analysis.R". The script does the following:
-
-* The R script "run_analysis.R" assumes that your working directory is currently the same directory in which you unzipped the data file. 
-* After loading some packages which will be necessary later in the script, the relevant ".txt" files are read into the workspace.
-* The script then replaces the generic column names with descriptive column names as provided in the downloaded data repository
-* This is followed by changing the numerical activity coding to a descriptive entry.
-* The three test and train files, respectively, are combined into a single data frame.
-* The data frames are then reduced to contain only selected columns as per the assignment
-* This is followed by the combination of the test and train data sets
-* In a last step, all remaing columns are summarized as per their mean for each subject separately. 
-* The results are saved in a new, tidy data set.
-* The tidy data set is saved to the work spaca as .csv
-* All along the script, variables are removed from the workspace when not needed anymore to keep memory usage minimal.
-
-
+"Getting and Cleaning Data". The basic functionality of the analysis 
+script "run_analysis.R" is outlined in the accompanying README file. 
 
 The columns in the final, tidy data set are labeled as follows. Be advised that the descriptive 
 activity column had to be removed in the summary step due to its non-numeric nature. It is, 
-however, contained and appropriately labeled in the last data frame prior to the summary stage.
+however, contained and appropriately labeled in the last data frame prior to the summary stage 
+(see R code).
 
 Columns in final summary data frame:
 
@@ -110,4 +97,69 @@ Columns in final summary data frame:
 [84] "angle(tBodyGyroJerkMean,gravityMean)"
 [85] "angle(X,gravityMean)"                
 [86] "angle(Y,gravityMean)"                
-[87] "angle(Z,gravityMean)"                
+[87] "angle(Z,gravityMean)"          
+
+
+
+Below, I reproduce the codebook of the original data set which contains additional details on the 
+nature of the experiment and the collected data.
+
+
+###Feature Selection 
+
+The features selected for this database come from the accelerometer and gyroscope 3-axial raw signals tAcc-XYZ and tGyro-XYZ. These time domain signals (prefix 't' to denote time) were captured at a constant rate of 50 Hz. Then they were filtered using a median filter and a 3rd order low pass Butterworth filter with a corner frequency of 20 Hz to remove noise. Similarly, the acceleration signal was then separated into body and gravity acceleration signals (tBodyAcc-XYZ and tGravityAcc-XYZ) using another low pass Butterworth filter with a corner frequency of 0.3 Hz. 
+
+Subsequently, the body linear acceleration and angular velocity were derived in time to obtain Jerk signals (tBodyAccJerk-XYZ and tBodyGyroJerk-XYZ). Also the magnitude of these three-dimensional signals were calculated using the Euclidean norm (tBodyAccMag, tGravityAccMag, tBodyAccJerkMag, tBodyGyroMag, tBodyGyroJerkMag). 
+
+Finally a Fast Fourier Transform (FFT) was applied to some of these signals producing fBodyAcc-XYZ, fBodyAccJerk-XYZ, fBodyGyro-XYZ, fBodyAccJerkMag, fBodyGyroMag, fBodyGyroJerkMag. (Note the 'f' to indicate frequency domain signals). 
+
+These signals were used to estimate variables of the feature vector for each pattern:  
+'-XYZ' is used to denote 3-axial signals in the X, Y and Z directions.
+
+tBodyAcc-XYZ
+tGravityAcc-XYZ
+tBodyAccJerk-XYZ
+tBodyGyro-XYZ
+tBodyGyroJerk-XYZ
+tBodyAccMag
+tGravityAccMag
+tBodyAccJerkMag
+tBodyGyroMag
+tBodyGyroJerkMag
+fBodyAcc-XYZ
+fBodyAccJerk-XYZ
+fBodyGyro-XYZ
+fBodyAccMag
+fBodyAccJerkMag
+fBodyGyroMag
+fBodyGyroJerkMag
+
+The set of variables that were estimated from these signals are: 
+
+mean(): Mean value
+std(): Standard deviation
+mad(): Median absolute deviation 
+max(): Largest value in array
+min(): Smallest value in array
+sma(): Signal magnitude area
+energy(): Energy measure. Sum of the squares divided by the number of values. 
+iqr(): Interquartile range 
+entropy(): Signal entropy
+arCoeff(): Autorregresion coefficients with Burg order equal to 4
+correlation(): correlation coefficient between two signals
+maxInds(): index of the frequency component with largest magnitude
+meanFreq(): Weighted average of the frequency components to obtain a mean frequency
+skewness(): skewness of the frequency domain signal 
+kurtosis(): kurtosis of the frequency domain signal 
+bandsEnergy(): Energy of a frequency interval within the 64 bins of the FFT of each window.
+angle(): Angle between to vectors.
+
+Additional vectors obtained by averaging the signals in a signal window sample. These are used on the angle() variable:
+
+gravityMean
+tBodyAccMean
+tBodyAccJerkMean
+tBodyGyroMean
+tBodyGyroJerkMean
+
+      
